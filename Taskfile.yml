@@ -1,0 +1,44 @@
+version: "3"
+dotenv: [".env"]
+env:
+  CARGO_BUILD_JOBS: "2"
+tasks:
+  build:
+    cmds:
+      - cargo build --locked -p kg-server
+  fmt:
+    cmds: [cargo fmt --all]
+  fmt:check:
+    cmds: [cargo fmt --all --check]
+  test:
+    cmds: [cargo test --locked --workspace --lib]
+  clippy:
+    cmds: [cargo clippy --locked --workspace --lib --bins -- -D warnings]
+  build:python:
+    cmds:
+      - cd python/kg-sdk && maturin build --profile dev --out ../../dist/python
+      - python3 -m pip wheel --no-deps --wheel-dir dist/python python/kg-connectors
+  install:python:
+    cmds:
+      - .venv/bin/python -m pip install --force-reinstall --no-deps dist/python/kg_sdk-0.1.0-*.whl dist/python/kg_connectors-0.1.0-*.whl
+  test:python:
+    cmds:
+      - .venv/bin/python -m pytest python/kg-sdk/tests python/kg-connectors/tests
+  test:smoke:
+    desc: Write an isolated AWS namespace through the real Rust engine; keep it for graph viewing
+    cmds:
+      - .venv/bin/python tools/smoke_ingestion.py
+  server:
+    cmds: [cargo run --locked -p kg-server -- http]
+  frontend:install:
+    dir: frontend
+    cmds: [npm ci]
+  frontend:build:
+    dir: frontend
+    cmds: [npm run build]
+  frontend:dev:
+    dir: frontend
+    cmds: [npm run dev]
+  frontend:lint:
+    dir: frontend
+    cmds: [npm run lint, npm run typecheck]

@@ -1,0 +1,49 @@
+{
+  "resourceArn": "arn:aws:rds:us-east-1:111122223333:db:smoke-orders-db",
+  "resourceId": "smoke-orders-db",
+  "resourceType": "AWS::RDS::DBInstance",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "DBInstanceIdentifier": "smoke-orders-db",
+    "Engine": "postgres",
+    "EngineVersion": "16.3",
+    "DBInstanceClass": "db.t3.medium",
+    "DBInstanceStatus": "available",
+    "AllocatedStorage": 100,
+    "MultiAZ": false,
+    "StorageEncrypted": true,
+    "Endpoint": {
+      "Address": "smoke-orders-db.example.invalid",
+      "Port": 5432
+    },
+    "DBSubnetGroup": {
+      "DBSubnetGroupName": "smoke-db",
+      "VpcId": "vpc-0a000000000000001",
+      "Subnets": [
+        {
+          "SubnetIdentifier": "subnet-0a000000000000001",
+          "SubnetStatus": "Active"
+        }
+      ]
+    },
+    "VpcSecurityGroups": [
+      {
+        "VpcSecurityGroupId": "sg-0a000000000000001",
+        "Status": "active"
+      }
+    ],
+    "DBInstanceArn": "arn:aws:rds:us-east-1:111122223333:db:smoke-orders-db",
+    "DbiResourceId": "db-ABCDEFGHIJKLMNOPQRSTUV1234",
+    "InstanceCreateTime": "2026-10-01T09:00:00Z",
+    "AvailabilityZone": "us-east-1a",
+    "PubliclyAccessible": false,
+    "AutoMinorVersionUpgrade": true,
+    "DeletionProtection": true,
+    "BackupRetentionPeriod": 7,
+    "PreferredBackupWindow": "03:00-03:30",
+    "PreferredMaintenanceWindow": "sun:04:00-sun:04:30",
+    "StorageType": "gp3"
+  }
+}

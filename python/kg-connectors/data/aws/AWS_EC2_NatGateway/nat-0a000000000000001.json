@@ -1,0 +1,24 @@
+{
+  "resourceArn": "arn:aws:ec2:us-east-1:111122223333:natgateway/nat-0a000000000000001",
+  "resourceId": "nat-0a000000000000001",
+  "resourceType": "AWS::EC2::NatGateway",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "NatGatewayId": "nat-0a000000000000001",
+    "VpcId": "vpc-0a000000000000001",
+    "SubnetId": "subnet-0a000000000000001",
+    "State": "available",
+    "ConnectivityType": "public",
+    "NatGatewayAddresses": [
+      {
+        "AllocationId": "eipalloc-0a000000000000001",
+        "PublicIp": "203.0.113.42",
+        "PrivateIp": "10.42.1.11",
+        "IsPrimary": true,
+        "Status": "succeeded"
+      }
+    ]
+  }
+}

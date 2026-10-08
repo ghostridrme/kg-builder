@@ -1,0 +1,30 @@
+[package]
+name = "kg-search"
+description = "Scoped keyword search and graph retrieval for kg-builder"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+chrono.workspace = true
+kg-core.workspace = true
+async-trait.workspace = true
+futures.workspace = true
+tokio.workspace = true
+uuid.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+
+[features]
+# Dev-only: the large-fixture retrieval budget regression compiles only for `task load:fact-retrieval`.
+exclusive-db-tests = []
+
+
+[dev-dependencies]
+kg-neo4j-testkit.workspace = true
+kg-storage-neo4j.workspace = true
+kg-pipeline.workspace = true
+kg-stages.workspace = true
+tokio = { workspace = true, features = ["full", "test-util"] }

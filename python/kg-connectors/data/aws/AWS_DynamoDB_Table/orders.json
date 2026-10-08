@@ -1,0 +1,40 @@
+{
+  "resourceArn": "arn:aws:dynamodb:us-east-1:111122223333:table/orders",
+  "resourceId": "orders",
+  "resourceType": "AWS::DynamoDB::Table",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "orderId",
+        "AttributeType": "S"
+      }
+    ],
+    "TableName": "orders",
+    "KeySchema": [
+      {
+        "AttributeName": "orderId",
+        "KeyType": "HASH"
+      }
+    ],
+    "TableStatus": "ACTIVE",
+    "CreationDateTime": "2026-10-01T09:00:00Z",
+    "ProvisionedThroughput": {
+      "NumberOfDecreasesToday": 1,
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    },
+    "TableSizeBytes": 2048,
+    "ItemCount": 10,
+    "TableArn": "arn:aws:dynamodb:us-east-1:111122223333:table/orders",
+    "TableId": "12345678-1234-1234-1234-123456789abc",
+    "SSEDescription": {
+      "Status": "ENABLED",
+      "SSEType": "KMS",
+      "KMSMasterKeyArn": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc"
+    },
+    "DeletionProtectionEnabled": true
+  }
+}

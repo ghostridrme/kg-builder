@@ -1,0 +1,43 @@
+{
+  "resourceArn": "arn:aws:iam::111122223333:instance-profile/orders-app",
+  "resourceId": "orders-app",
+  "resourceType": "AWS::IAM::InstanceProfile",
+  "accountId": "111122223333",
+  "awsRegion": "",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "Path": "/",
+    "InstanceProfileName": "orders-app",
+    "InstanceProfileId": "AIPAXAMPLE123456789012",
+    "Arn": "arn:aws:iam::111122223333:instance-profile/orders-app",
+    "CreateDate": "2026-10-01T09:00:00Z",
+    "Roles": [
+      {
+        "Path": "/",
+        "RoleName": "orders-app",
+        "RoleId": "AROAXAMPLE123456789012",
+        "Arn": "arn:aws:iam::111122223333:role/orders-app",
+        "CreateDate": "2026-10-01T09:00:00Z",
+        "AssumeRolePolicyDocument": "{\"Version\": \"2012-10-17\", \"Statement\": [{\"Effect\": \"Allow\", \"Principal\": {\"Service\": \"ec2.amazonaws.com\"}, \"Action\": \"sts:AssumeRole\"}]}",
+        "Description": "Synthetic application role",
+        "MaxSessionDuration": 3600,
+        "Tags": [
+          {
+            "Key": "Environment",
+            "Value": "test"
+          }
+        ],
+        "RoleLastUsed": {
+          "LastUsedDate": "2026-10-08T10:00:00Z",
+          "Region": "us-east-1"
+        }
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Environment",
+        "Value": "test"
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "namespace": "prod",
+    "name": "aws-sync-us-east-1",
+    "data_type": "entities",
+    "snapshot_kind": "full",
+    "complete": true,
+    "sync_generation": 1,
+    "collection": {"key": "aws:us-east-1", "relationships_complete": false},
+    "source": "aws",
+    "org_id": "acme",
+    "captured_at": "2026-08-25T03:00:00Z",
+    "entities": [
+      {
+        "entity_type": "Vpc",
+        "name": "vpc-0a1b2c3d",
+        "primary_key_properties": ["vpc_id"],
+        "raw_properties": {"vpc_id": "vpc-0a1b2c3d", "cidr_block": "10.0.0.0/16", "region": "us-east-1", "is_default": false},
+        "namespace": null,
+        "lifecycle": "active",
+        "tags": {"Name": "prod-vpc", "team": "platform"},
+        "source": "aws",
+        "org_id": "acme"
+      },
+      {
+        "entity_type": "Subnet",
+        "name": "subnet-1111aaaa",
+        "primary_key_properties": ["subnet_id"],
+        "raw_properties": {"subnet_id": "subnet-1111aaaa", "vpc_id": "vpc-0a1b2c3d", "cidr_block": "10.0.1.0/24", "availability_zone": "us-east-1a"},
+        "namespace": null,
+        "lifecycle": "active",
+        "tags": {},
+        "source": "aws",
+        "org_id": "acme"
+      },
+      {
+        "entity_type": "SecurityGroup",
+        "name": "sg-web",
+        "primary_key_properties": ["group_id"],
+        "raw_properties": {"group_id": "sg-0f0f0f0f", "group_name": "sg-web", "vpc_id": "vpc-0a1b2c3d",
+          "ip_permissions": [{"from_port": 443, "to_port": 443, "ip_protocol": "tcp", "cidr": "0.0.0.0/0"}]},
+        "namespace": null,
+        "lifecycle": "active",
+        "tags": {},
+        "source": "aws",
+        "org_id": "acme"
+      },
+      {
+        "entity_type": "Ec2Instance",
+        "name": "web-1",
+        "primary_key_properties": ["instance_id"],
+        "raw_properties": {"instance_id": "i-0123456789abcdef0", "instance_type": "t3.medium", "state": "running",
+          "vpc_id": "vpc-0a1b2c3d", "subnet_id": "subnet-1111aaaa", "security_group_ids": ["sg-0f0f0f0f"],
+          "private_ip": "10.0.1.15", "launch_time": "2026-08-01T10:00:00Z"},
+        "namespace": null,
+        "lifecycle": "active",
+        "tags": {"Name": "web-1", "role": "web"},
+        "source": "aws",
+        "org_id": "acme"
+      },
+      {
+        "entity_type": "RdsInstance",
+        "name": "orders-db",
+        "primary_key_properties": ["db_instance_identifier"],
+        "raw_properties": {"db_instance_identifier": "orders-db", "engine": "postgres", "engine_version": "16.3",
+          "db_instance_class": "db.r6g.large", "vpc_id": "vpc-0a1b2c3d", "vpc_security_group_ids": ["sg-0f0f0f0f"],
+          "multi_az": true, "status": "available"},
+        "namespace": null,
+        "lifecycle": "active",
+        "tags": {"Name": "orders-db"},
+        "source": "aws",
+        "org_id": "acme"
+      }
+    ]
+  }
+]

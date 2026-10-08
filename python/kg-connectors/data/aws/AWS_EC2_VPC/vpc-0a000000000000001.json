@@ -1,0 +1,22 @@
+{
+  "resourceArn": "arn:aws:ec2:us-east-1:111122223333:vpc/vpc-0a000000000000001",
+  "resourceId": "vpc-0a000000000000001",
+  "resourceType": "AWS::EC2::VPC",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "VpcId": "vpc-0a000000000000001",
+    "CidrBlock": "10.42.0.0/16",
+    "State": "available",
+    "IsDefault": false,
+    "InstanceTenancy": "default",
+    "OwnerId": "111122223333",
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "smoke-vpc"
+      }
+    ]
+  }
+}

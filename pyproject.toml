@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+testpaths = ["python/kg-sdk/tests", "python/kg-connectors/tests"]
+pythonpath = ["python/kg-connectors/src", "python/kg-sdk/tests", "python/kg-connectors/tests"]
+norecursedirs = ["results"]
+addopts = "-p no:cacheprovider --import-mode=importlib"

@@ -1,0 +1,23 @@
+{
+  "resourceArn": "arn:aws:sqs:us-east-1:111122223333:orders-jobs",
+  "resourceId": "orders-jobs",
+  "resourceType": "AWS::SQS::Queue",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "Attributes": {
+      "QueueArn": "arn:aws:sqs:us-east-1:111122223333:orders-jobs",
+      "VisibilityTimeout": "30",
+      "MaximumMessageSize": "262144",
+      "MessageRetentionPeriod": "345600",
+      "ApproximateNumberOfMessages": "0",
+      "ApproximateNumberOfMessagesNotVisible": "0",
+      "CreatedTimestamp": "1790845200",
+      "LastModifiedTimestamp": "1790845200",
+      "DelaySeconds": "0",
+      "ReceiveMessageWaitTimeSeconds": "20",
+      "KmsMasterKeyId": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc"
+    }
+  }
+}

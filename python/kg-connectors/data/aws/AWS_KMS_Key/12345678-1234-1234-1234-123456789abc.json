@@ -1,0 +1,26 @@
+{
+  "resourceArn": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc",
+  "resourceId": "12345678-1234-1234-1234-123456789abc",
+  "resourceType": "AWS::KMS::Key",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "AWSAccountId": "111122223333",
+    "KeyId": "12345678-1234-1234-1234-123456789abc",
+    "Arn": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc",
+    "CreationDate": "2026-10-01T09:00:00Z",
+    "Enabled": true,
+    "Description": "Synthetic encryption key",
+    "KeyUsage": "ENCRYPT_DECRYPT",
+    "KeyState": "Enabled",
+    "Origin": "AWS_KMS",
+    "KeyManager": "CUSTOMER",
+    "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
+    "KeySpec": "SYMMETRIC_DEFAULT",
+    "EncryptionAlgorithms": [
+      "SYMMETRIC_DEFAULT"
+    ],
+    "MultiRegion": false
+  }
+}

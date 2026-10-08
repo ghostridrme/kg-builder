@@ -1,0 +1,69 @@
+{
+  "resourceArn": "arn:aws:ec2:us-east-1:111122223333:instance/i-0a000000000000001",
+  "resourceId": "i-0a000000000000001",
+  "resourceType": "AWS::EC2::Instance",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "InstanceId": "i-0a000000000000001",
+    "VpcId": "vpc-0a000000000000001",
+    "SubnetId": "subnet-0a000000000000001",
+    "SecurityGroups": [
+      {
+        "GroupId": "sg-0a000000000000001",
+        "GroupName": "smoke-web"
+      }
+    ],
+    "BlockDeviceMappings": [
+      {
+        "DeviceName": "/dev/xvda",
+        "Ebs": {
+          "VolumeId": "vol-0a000000000000001",
+          "Status": "attached",
+          "DeleteOnTermination": true
+        }
+      }
+    ],
+    "State": {
+      "Code": 16,
+      "Name": "running"
+    },
+    "InstanceType": "t3.medium",
+    "Architecture": "x86_64",
+    "PrivateIpAddress": "10.42.1.10",
+    "ImageId": "ami-0a000000000000001",
+    "Monitoring": {
+      "State": "disabled"
+    },
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "smoke-app"
+      }
+    ],
+    "LaunchTime": "2026-10-01T10:00:00Z",
+    "RootDeviceType": "ebs",
+    "RootDeviceName": "/dev/xvda",
+    "EbsOptimized": true,
+    "EnaSupport": true,
+    "VirtualizationType": "hvm",
+    "Hypervisor": "xen",
+    "MetadataOptions": {
+      "State": "applied",
+      "HttpTokens": "required",
+      "HttpPutResponseHopLimit": 1,
+      "HttpEndpoint": "enabled",
+      "HttpProtocolIpv6": "disabled",
+      "InstanceMetadataTags": "disabled"
+    },
+    "IamInstanceProfile": {
+      "Arn": "arn:aws:iam::111122223333:instance-profile/orders-app",
+      "Id": "AIPAXAMPLE123456789012"
+    },
+    "CpuOptions": {
+      "CoreCount": 1,
+      "ThreadsPerCore": 2
+    }
+  }
+}

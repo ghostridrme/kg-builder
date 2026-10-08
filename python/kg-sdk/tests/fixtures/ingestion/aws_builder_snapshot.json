@@ -1,0 +1,348 @@
+[
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::VPC-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::VPC",
+        "name": "vpc-0a000000000000001",
+        "primary_key_properties": [
+          "VpcId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "VpcId": "vpc-0a000000000000001",
+          "CidrBlock": "10.42.0.0/16",
+          "State": "available",
+          "IsDefault": false,
+          "InstanceTenancy": "default",
+          "OwnerId": "111122223333",
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "smoke-vpc"
+            }
+          ]
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::Subnet-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::Subnet",
+        "name": "subnet-0a000000000000001",
+        "primary_key_properties": [
+          "SubnetId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "SubnetId": "subnet-0a000000000000001",
+          "VpcId": "vpc-0a000000000000001",
+          "CidrBlock": "10.42.1.0/24",
+          "AvailabilityZone": "us-east-1a",
+          "State": "available",
+          "AvailableIpAddressCount": 250,
+          "MapPublicIpOnLaunch": false,
+          "OwnerId": "111122223333"
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::SecurityGroup-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::SecurityGroup",
+        "name": "sg-0a000000000000001",
+        "primary_key_properties": [
+          "GroupId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "GroupId": "sg-0a000000000000001",
+          "GroupName": "smoke-web",
+          "Description": "HTTPS application access",
+          "VpcId": "vpc-0a000000000000001",
+          "OwnerId": "111122223333",
+          "IpPermissions": [
+            {
+              "IpProtocol": "tcp",
+              "FromPort": 443,
+              "ToPort": 443,
+              "IpRanges": [
+                {
+                  "CidrIp": "10.42.0.0/16"
+                }
+              ]
+            }
+          ],
+          "IpPermissionsEgress": [
+            {
+              "IpProtocol": "-1",
+              "IpRanges": [
+                {
+                  "CidrIp": "0.0.0.0/0"
+                }
+              ]
+            }
+          ]
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::Instance-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::Instance",
+        "name": "i-0a000000000000001",
+        "primary_key_properties": [
+          "InstanceId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "InstanceId": "i-0a000000000000001",
+          "VpcId": "vpc-0a000000000000001",
+          "SubnetId": "subnet-0a000000000000001",
+          "SecurityGroups": [
+            {
+              "GroupId": "sg-0a000000000000001",
+              "GroupName": "smoke-web"
+            }
+          ],
+          "BlockDeviceMappings": [
+            {
+              "DeviceName": "/dev/xvda",
+              "Ebs": {
+                "VolumeId": "vol-0a000000000000001",
+                "Status": "attached",
+                "DeleteOnTermination": true
+              }
+            }
+          ],
+          "State": {
+            "Code": 16,
+            "Name": "running"
+          },
+          "InstanceType": "t3.medium",
+          "Architecture": "x86_64",
+          "PrivateIpAddress": "10.42.1.10",
+          "ImageId": "ami-0a000000000000001",
+          "Monitoring": {
+            "State": "disabled"
+          },
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "smoke-app"
+            }
+          ]
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::Volume-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::Volume",
+        "name": "vol-0a000000000000001",
+        "primary_key_properties": [
+          "VolumeId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "VolumeId": "vol-0a000000000000001",
+          "Size": 40,
+          "VolumeType": "gp3",
+          "Iops": 3000,
+          "Throughput": 125,
+          "State": "in-use",
+          "Encrypted": true,
+          "AvailabilityZone": "us-east-1a",
+          "Attachments": [
+            {
+              "InstanceId": "i-0a000000000000001",
+              "Device": "/dev/xvda",
+              "State": "attached",
+              "DeleteOnTermination": true
+            }
+          ]
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::EIP-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::EIP",
+        "name": "eipalloc-0a000000000000001",
+        "primary_key_properties": [
+          "AllocationId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "AllocationId": "eipalloc-0a000000000000001",
+          "PublicIp": "203.0.113.42",
+          "Domain": "vpc",
+          "NetworkBorderGroup": "us-east-1",
+          "PublicIpv4Pool": "amazon"
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::EC2::NatGateway-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::EC2::NatGateway",
+        "name": "nat-0a000000000000001",
+        "primary_key_properties": [
+          "NatGatewayId"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "NatGatewayId": "nat-0a000000000000001",
+          "VpcId": "vpc-0a000000000000001",
+          "SubnetId": "subnet-0a000000000000001",
+          "State": "available",
+          "ConnectivityType": "public",
+          "NatGatewayAddresses": [
+            {
+              "AllocationId": "eipalloc-0a000000000000001",
+              "PublicIp": "203.0.113.42",
+              "PrivateIp": "10.42.1.11",
+              "IsPrimary": true,
+              "Status": "succeeded"
+            }
+          ]
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  },
+  {
+    "org_id": "graph-demo",
+    "namespace": "aws-smoke-20261008",
+    "source": "aws",
+    "name": "AWS::RDS::DBInstance-smoke",
+    "data_type": "entities",
+    "captured_at": "2026-10-08T12:00:00Z",
+    "entities": [
+      {
+        "entity_type": "AWS::RDS::DBInstance",
+        "name": "smoke-orders-db",
+        "primary_key_properties": [
+          "DBInstanceIdentifier"
+        ],
+        "additional_key_properties": [],
+        "raw_properties": {
+          "DBInstanceIdentifier": "smoke-orders-db",
+          "Engine": "postgres",
+          "EngineVersion": "16.3",
+          "DBInstanceClass": "db.t3.medium",
+          "DBInstanceStatus": "available",
+          "AllocatedStorage": 100,
+          "MultiAZ": false,
+          "StorageEncrypted": true,
+          "Endpoint": {
+            "Address": "smoke-orders-db.example.invalid",
+            "Port": 5432
+          },
+          "DBSubnetGroup": {
+            "DBSubnetGroupName": "smoke-db",
+            "VpcId": "vpc-0a000000000000001",
+            "Subnets": [
+              {
+                "SubnetIdentifier": "subnet-0a000000000000001",
+                "SubnetStatus": "Active"
+              }
+            ]
+          },
+          "VpcSecurityGroups": [
+            {
+              "VpcSecurityGroupId": "sg-0a000000000000001",
+              "Status": "active"
+            }
+          ]
+        },
+        "namespace": "aws-smoke-20261008",
+        "org_id": "graph-demo",
+        "source": "aws",
+        "lifecycle": "active",
+        "tags": {}
+      }
+    ]
+  }
+]

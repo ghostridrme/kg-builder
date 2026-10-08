@@ -1,0 +1,20 @@
+{
+  "resourceArn": "arn:aws:sns:us-east-1:111122223333:orders-events",
+  "resourceId": "arn:aws:sns:us-east-1:111122223333:orders-events",
+  "resourceType": "AWS::SNS::Topic",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "Attributes": {
+      "TopicArn": "arn:aws:sns:us-east-1:111122223333:orders-events",
+      "Owner": "111122223333",
+      "DisplayName": "Orders events",
+      "SubscriptionsConfirmed": "1",
+      "SubscriptionsDeleted": "0",
+      "SubscriptionsPending": "0",
+      "KmsMasterKeyId": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc",
+      "FifoTopic": "false"
+    }
+  }
+}

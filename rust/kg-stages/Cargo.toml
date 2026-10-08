@@ -1,0 +1,48 @@
+[package]
+name = "kg-stages"
+description = "Pipeline stage implementations for the kg-builder knowledge graph engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+kg-core.workspace = true
+kg-pipeline.workspace = true
+async-trait.workspace = true
+futures.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+indexmap.workspace = true
+tracing.workspace = true
+
+sha2 = "0.10"
+
+[features]
+# Dev-only tier gates. A plain `cargo test -p kg-stages -- --ignored` cannot
+# compile a paid or exclusive-database test; only `task paid:*` / `task load:*` enable these.
+paid-tests = []
+exclusive-db-tests = []
+# Dev-only: the live Neo4j tests that live next to crate-private code compile only for `task test:live:*`.
+live-tests = []
+
+# Five tier targets (docs/TESTING.md); each main.rs mounts tests/common.
+
+
+
+
+
+
+[dev-dependencies]
+tracing-subscriber.workspace = true
+proptest.workspace = true
+kg-neo4j-testkit.workspace = true
+kg-search = { path = "../kg-search" }
+kg-core = { workspace = true, features = ["test-support"] }
+kg-storage-neo4j.workspace = true
+tokio = { workspace = true, features = ["full", "test-util"] }
+

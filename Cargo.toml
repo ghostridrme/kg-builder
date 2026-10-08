@@ -1,0 +1,90 @@
+[workspace]
+resolver = "2"
+exclude = ["rust/vendor/neo4rs"]
+members = [
+    "rust/kg-core",
+    "rust/kg-pipeline",
+    "rust/kg-stages",
+    "rust/kg-storage-neo4j",
+    "rust/kg-search",
+    "rust/kg-storage-cypher",
+    "rust/kg-python",
+    "rust/kg-server",
+    # Dev-only live-database helpers; only [dev-dependencies] may list it.
+    "rust/kg-neo4j-testkit",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+rust-version = "1.92"
+
+[workspace.dependencies]
+kg-storage-cypher = { path = "rust/kg-storage-cypher" }
+# Internal crates
+kg-core = { path = "rust/kg-core" }
+kg-pipeline = { path = "rust/kg-pipeline" }
+kg-stages = { path = "rust/kg-stages" }
+# Test doubles only: no [dependencies] section may list it.
+kg-storage-neo4j = { path = "rust/kg-storage-neo4j" }
+kg-neo4j-testkit = { path = "rust/kg-neo4j-testkit" }
+
+# Async runtime & utilities
+tokio = { version = "1", features = ["sync", "rt", "macros", "time"] }
+tokio-util = "0.7"
+futures = "0.3"
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+indexmap = { version = "2", features = ["serde"] }
+toml = "0.8"
+
+# Core types
+uuid = { version = "1", features = ["v4", "v5", "v7", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+strum = { version = "0.28", features = ["derive"] }
+secrecy = { version = "0.10", features = ["serde"] }
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+dashmap = "6"
+criterion = { version = "0.8", default-features = false }
+
+# Observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Search
+
+# Backends
+neo4rs = "0.8"
+# Direct provider calls; the pipeline owns orchestration.
+dotenvy = "0.15"
+
+# Testing
+pretty_assertions = "1"
+proptest = "1"
+
+[patch.crates-io]
+neo4rs = { path = "rust/vendor/neo4rs" }
+
+# Build size: dependency debug info and per-dependency incremental caches were
+# the bulk of a target directory that filled the disk twice. Workspace crates
+# keep line tables for readable panics and backtraces; dependencies build with
+# no debug info and no incremental cache. `task size` reports, `task clean:*`
+# trims. Keep every profile change here so concurrent builds share one layout.
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.dev.package."*"]
+debug = false
+incremental = false
+
+[profile.test]
+debug = "line-tables-only"
+
+[profile.test.package."*"]
+debug = false
+incremental = false

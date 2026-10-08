@@ -1,0 +1,28 @@
+{
+  "resourceArn": "arn:aws:ec2:us-east-1:111122223333:volume/vol-0a000000000000001",
+  "resourceId": "vol-0a000000000000001",
+  "resourceType": "AWS::EC2::Volume",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "VolumeId": "vol-0a000000000000001",
+    "Size": 40,
+    "VolumeType": "gp3",
+    "Iops": 3000,
+    "Throughput": 125,
+    "State": "in-use",
+    "Encrypted": true,
+    "AvailabilityZone": "us-east-1a",
+    "Attachments": [
+      {
+        "InstanceId": "i-0a000000000000001",
+        "Device": "/dev/xvda",
+        "State": "attached",
+        "DeleteOnTermination": true
+      }
+    ],
+    "CreateTime": "2026-10-01T09:50:00Z",
+    "MultiAttachEnabled": false
+  }
+}

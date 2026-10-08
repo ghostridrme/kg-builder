@@ -1,0 +1,42 @@
+{
+  "entity_types": [
+    {"name": "Vpc",            "description": "an AWS VPC (vpc-…)", "properties": []},
+    {"name": "Subnet",         "description": "a VPC subnet (subnet-…)", "properties": []},
+    {"name": "SecurityGroup",  "description": "an EC2 security group (sg-…)", "properties": []},
+    {"name": "Ec2Instance",    "description": "an EC2 virtual machine (i-…)", "properties": []},
+    {"name": "RdsInstance",    "description": "an RDS database instance", "properties": []},
+    {"name": "EcsCluster",     "description": "an ECS cluster", "properties": []},
+    {"name": "EcsService",     "description": "a long-running ECS service / application running in a cluster", "properties": []},
+    {"name": "LambdaFunction", "description": "an AWS Lambda function", "properties": []},
+    {"name": "SqsQueue",       "description": "an SQS queue", "properties": []},
+    {"name": "SnsTopic",       "description": "an SNS topic", "properties": []},
+    {"name": "LoadBalancer",   "description": "an ALB/NLB/ELB load balancer", "properties": []},
+    {"name": "S3Bucket",       "description": "an S3 bucket", "properties": []},
+    {"name": "IamRole",        "description": "an IAM role", "properties": []},
+    {"name": "AwsService",     "description": "a managed AWS service referenced without a specific resource (SES, CloudWatch, …)", "properties": []}
+  ],
+  "edge_types": [],
+  "edge_type_map": [
+    {"source_type": "EcsService",     "target_type": "EcsCluster",    "edge_name": "RUNS_ON",       "description": null},
+    {"source_type": "LoadBalancer",   "target_type": "EcsService",    "edge_name": "ROUTES_TO",     "description": null},
+    {"source_type": "LambdaFunction", "target_type": "SqsQueue",      "edge_name": "CONSUMES_FROM", "description": null},
+    {"source_type": "EcsService",     "target_type": "SqsQueue",      "edge_name": "PUBLISHES_TO",  "description": null},
+    {"source_type": "EcsService",     "target_type": "RdsInstance",   "edge_name": "READS_FROM",    "description": null},
+    {"source_type": "Ec2Instance",    "target_type": "SecurityGroup", "edge_name": "MEMBER_OF",     "description": null},
+    {"source_type": "Ec2Instance",    "target_type": "Subnet",        "edge_name": "DEPLOYED_IN",   "description": null},
+    {"source_type": "Subnet",         "target_type": "Vpc",           "edge_name": "PART_OF",       "description": null}
+  ],
+  "relationship_vocabulary": [
+    "READS_FROM", "WRITES_TO", "PUBLISHES_TO", "CONSUMES_FROM", "CALLS", "ROUTES_TO",
+    "RUNS_ON", "DEPLOYED_IN", "MEMBER_OF", "PART_OF", "USES", "DEPENDS_ON", "CONNECTS_TO"
+  ],
+  "relation_aliases": {
+    "READS": "READS_FROM", "QUERIES": "READS_FROM", "WRITES": "WRITES_TO", "STORES_IN": "WRITES_TO",
+    "PUBLISHES": "PUBLISHES_TO", "SENDS_TO": "PUBLISHES_TO", "EMITS_TO": "PUBLISHES_TO",
+    "CONSUMES": "CONSUMES_FROM", "SUBSCRIBES_TO": "CONSUMES_FROM", "TRIGGERED_BY": "CONSUMES_FROM",
+    "INVOKES": "CALLS", "SENDS_EMAIL_VIA": "CALLS", "FORWARDS_TO": "ROUTES_TO", "BEHIND": "ROUTES_TO",
+    "HOSTED_ON": "RUNS_ON", "RUNS_IN": "RUNS_ON", "DEPLOYED_TO": "DEPLOYED_IN", "LOCATED_IN": "DEPLOYED_IN",
+    "IN_VPC": "DEPLOYED_IN", "BELONGS_TO": "MEMBER_OF", "ATTACHED_TO": "MEMBER_OF", "CONTAINED_IN": "PART_OF",
+    "CONTAINS": "PART_OF", "REFERENCES_VPC": "DEPLOYED_IN"
+  }
+}

@@ -1,0 +1,625 @@
+/* Scan application sources only, never generated builds or test artifacts. */
+@import "tailwindcss" source("../");
+@import "@xyflow/react/dist/style.css";
+@import "./fonts.css";
+@theme {
+  --color-bg: #000000;
+  --color-surface: #0a0a0b;
+  --color-raised: #131316;
+  --color-overlay: #1a1a1e;
+  --color-border: #1d1d20;
+  --color-border-strong: #2a2a2f;
+  --color-fg: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-faint: #8b8b94;
+  --color-accent: #22d3ee;
+  --color-accent-soft: #67e8f9;
+  --color-accent-deep: #0e7490;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Display serif — the editorial "voice". Use ONLY at title sizes (≥20px). */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+}
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv05", "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.011em;
+  }
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  input,
+  select,
+  button {
+    border: 1px solid var(--color-border);
+    background: var(--color-raised);
+    color: var(--color-muted);
+    padding: 7px 10px;
+    border-radius: 0;
+    font-size: 12px;
+    transition:
+      color 0.15s,
+      border-color 0.15s;
+  }
+  button:hover {
+    color: var(--color-fg);
+    border-color: var(--color-border-strong);
+  }
+  input {
+    color: var(--color-fg);
+  }
+  input::placeholder {
+    color: var(--color-faint);
+  }
+  input[type="checkbox"] {
+    accent-color: var(--color-accent);
+  }
+  button[aria-pressed="true"] {
+    color: var(--color-accent);
+    border-color: color-mix(in oklab, var(--color-accent) 40%, transparent);
+    background: color-mix(in oklab, var(--color-accent) 10%, transparent);
+  }
+  pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--color-fg);
+  }
+  summary {
+    cursor: pointer;
+  }
+  details {
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px 0;
+  }
+}
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+.react-flow {
+  background: var(--color-surface) !important;
+}
+.react-flow__controls {
+  border-radius: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.react-flow__controls-button {
+  background: var(--color-raised) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  color: var(--color-fg) !important;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+}
+.react-flow__controls-button:hover {
+  background: var(--color-overlay) !important;
+}
+.react-flow__controls-button svg {
+  fill: var(--color-muted) !important;
+}
+
+.graph-panel {
+  position: absolute;
+  inset: 0 0 0 auto;
+  z-index: 20;
+  width: 100%;
+  max-width: 400px;
+  overflow: auto;
+  border-left: 1px solid var(--color-border);
+  background: var(--color-raised);
+  padding: 20px;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+@media (min-width: 768px) {
+  .graph-panel {
+    position: relative;
+    inset: auto;
+    flex: none;
+    width: 380px;
+    max-width: 45%;
+    min-height: 0;
+  }
+  .graph-panel h2 {
+    font-size: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Keep graph controls compact without shrinking their interaction targets. */
+.control-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.graph-toolbar input[type="datetime-local"],
+.graph-toolbar :is(select, button),
+.graph-panel button {
+  min-height: 36px;
+  padding: 8px 12px;
+  line-height: 18px;
+  border: 1px solid var(--color-border-strong);
+}
+.graph-toolbar :is(input, select) {
+  max-width: 100%;
+}
+.search-input {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-raised);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-fg);
+}
+.search-input:focus-visible {
+  border-color: var(--color-accent);
+  outline-offset: 0;
+  outline-width: 1px;
+}
+
+.entity-link:hover {
+  background: var(--color-overlay);
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+.checkbox-field input {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+}
+.graph-panel h2,
+.graph-panel p,
+.graph-panel summary {
+  overflow-wrap: anywhere;
+}
+.graph-panel pre {
+  margin-top: 8px;
+  padding-left: 16px;
+}
+.graph-panel .icon-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+}
+.panel-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+.panel-tabs button {
+  flex: 1;
+  padding: 8px;
+  font-size: 12px;
+}
+.entity-link {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.graph-panel:focus-within {
+  outline: none;
+}
+@media (max-width: 767px) {
+  .graph-toolbar .scope-field {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .graph-toolbar .scope-field select {
+    flex: 1;
+    min-width: 0;
+    max-width: 210px;
+  }
+
+  .graph-panel {
+    max-width: none;
+  }
+  .search-input {
+    font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .graph-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    height: 100dvh;
+    border-left: 0;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+}
+
+.scope-field select {
+  width: 180px;
+}
+
+.graph-toolbar .search-input {
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 18px;
+}
+@media (max-width: 767px) {
+  .graph-toolbar .search-input {
+    font-size: 16px;
+  }
+}
+
+.graph-finder {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: min(440px, calc(100% - 28px));
+  z-index: 20;
+}
+.graph-finder .search-form {
+  padding: 6px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  box-shadow: 0 4px 20px #0005;
+}
+.graph-finder .search-input {
+  min-height: 36px;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 0;
+  background: transparent;
+}
+.finder-dropdown {
+  margin-top: 6px;
+  max-height: min(420px, 60vh);
+  overflow: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  box-shadow: 0 12px 32px #0008;
+}
+.finder-result {
+  padding: 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: 13px;
+}
+.finder-result:hover {
+  background: var(--color-raised);
+}
+/* One responsive toolbar contract shared by graph renderers. */
+.core-filters {
+  display: grid;
+  grid-template-columns:
+    minmax(160px, 1.3fr) 112px 128px minmax(150px, 1fr) 60px minmax(220px, 1.8fr)
+    172px auto;
+  gap: 10px;
+  align-items: end;
+}
+.core-filters .control-field {
+  min-width: 0;
+  font-size: 11px;
+  gap: 6px;
+}
+.core-filters select,
+.core-filters input:not([type="checkbox"]) {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  font-size: 12px;
+}
+.core-filters select {
+  text-overflow: ellipsis;
+}
+.core-filters .graph-finder {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+}
+.core-filters .search-form {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+.core-filters .search-input {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-raised);
+}
+.core-filters .finder-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: max(100%, 320px);
+  max-width: calc(100vw - 40px);
+}
+.snapshot-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 10px;
+  white-space: nowrap;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-raised);
+  font-size: 12px;
+  cursor: pointer;
+}
+.snapshot-toggle input {
+  width: 14px;
+  height: 14px;
+  min-height: 0;
+  accent-color: var(--color-accent);
+}
+.snapshot-toggle:has(input:checked) {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.filter-actions {
+  display: flex;
+  gap: 8px;
+}
+.filter-actions button {
+  height: 38px;
+  font-size: 12px;
+}
+.mobile-filters {
+  display: none;
+}
+.graph-context {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.graph-context button {
+  padding: 2px 4px;
+  font-size: 12px;
+  color: var(--color-accent);
+}
+.graph-context time {
+  font-size: 11px;
+}
+button:disabled,
+select:disabled,
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+@media (max-width: 1250px) {
+  .core-filters {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .core-filters .finder-field {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 700px) {
+  .core-filters {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+  .core-filters .scope-field {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .core-filters .filter-actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .core-filters .finder-field {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .core-filters:not(.filters-expanded) .secondary-filter {
+    display: none;
+  }
+  .core-filters .secondary-filter {
+    grid-column: span 1;
+  }
+  .mobile-filters {
+    display: block;
+  }
+  .graph-context time {
+    display: none;
+  }
+  .graph-view-actions {
+    gap: 10px;
+  }
+  .core-filters .graph-finder .search-input {
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Graph toolbar actions. */
+.graph-view-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+/* At overview scale, square marks communicate identity; focus reveals full cards. */
+.entity-overview {
+  border-width: 3px;
+}
+.entity-overview > .entity-card-body {
+  display: none;
+}
+.entity-overview > div {
+  border: 0;
+}
+.entity-overview span[title] {
+  font-size: 28px;
+  line-height: 1.3;
+}
+.entity-overview .h-2 {
+  width: 16px;
+  height: 16px;
+}
+
+.filter-select {
+  position: relative;
+  min-width: 0;
+}
+.filter-select > button {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  height: 38px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  background: var(--color-raised);
+  border: 1px solid var(--color-border-strong);
+  font-size: 12px;
+}
+.filter-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: max(100%, 280px);
+  max-width: calc(100vw - 40px);
+  z-index: 60;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  padding: 8px;
+  box-shadow: 0 8px 28px #0008;
+}
+.filter-popover [role="listbox"] {
+  max-height: 260px;
+  overflow: auto;
+  margin-top: 8px;
+}
+.filter-popover [role="option"] {
+  display: block;
+  width: 100%;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  border: 0;
+}
+.filter-popover [aria-selected="true"] {
+  color: var(--color-accent);
+  background: var(--color-raised);
+}
+.filter-popover p {
+  padding: 8px;
+  color: var(--color-muted);
+}
+.record-fields details {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.record-fields pre {
+  margin-top: 10px;
+}
+
+.canvas-budget {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+.canvas-budget select {
+  padding: 3px 6px;
+  background: var(--color-raised);
+  border: 1px solid var(--color-border-strong);
+}
+.graph-view-actions {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+@media (max-width: 700px) {
+  .graph-view-actions {
+    gap: 8px;
+  }
+  .graph-view-actions > a {
+    white-space: nowrap;
+    font-size: 11px;
+  }
+}
+@media (min-width: 768px) {
+  .graph-panel {
+    resize: horizontal;
+    min-width: 320px;
+    max-width: 55%;
+    width: 420px;
+  }
+}
+@media (max-width: 767px) {
+  .graph-panel {
+    max-width: none;
+  }
+}

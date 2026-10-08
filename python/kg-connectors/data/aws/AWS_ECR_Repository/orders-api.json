@@ -1,0 +1,23 @@
+{
+  "resourceArn": "arn:aws:ecr:us-east-1:111122223333:repository/orders-api",
+  "resourceId": "orders-api",
+  "resourceType": "AWS::ECR::Repository",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "repositoryArn": "arn:aws:ecr:us-east-1:111122223333:repository/orders-api",
+    "registryId": "111122223333",
+    "repositoryName": "orders-api",
+    "repositoryUri": "111122223333.dkr.ecr.us-east-1.amazonaws.com/orders-api",
+    "createdAt": "2026-10-01T09:00:00Z",
+    "imageTagMutability": "IMMUTABLE",
+    "imageScanningConfiguration": {
+      "scanOnPush": true
+    },
+    "encryptionConfiguration": {
+      "encryptionType": "KMS",
+      "kmsKey": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc"
+    }
+  }
+}

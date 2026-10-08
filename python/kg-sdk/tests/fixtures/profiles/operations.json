@@ -1,0 +1,263 @@
+{
+  "format_version": 1,
+  "profile_id": "operations",
+  "revision": 1,
+  "mode": "strict",
+  "ontology": {
+    "entity_types": [
+      {
+        "name": "Application",
+        "description": "An explicitly identified application supported by the source.",
+        "identity_properties": [
+          "application_id"
+        ],
+        "properties": [
+          {
+            "name": "application_id",
+            "description": "Exact source-stated stable identifier, scoped by its provider where necessary.",
+            "required": true
+          }
+        ],
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "application_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "owner": {
+              "type": "string"
+            },
+            "environment": {
+              "type": "string"
+            },
+            "observability_url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "application_id"
+          ],
+          "additionalProperties": true
+        }
+      },
+      {
+        "name": "Repository",
+        "description": "An explicitly identified repository supported by the source.",
+        "identity_properties": [
+          "url"
+        ],
+        "properties": [
+          {
+            "name": "url",
+            "description": "Exact source-stated stable identifier, scoped by its provider where necessary.",
+            "required": true
+          }
+        ],
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "default_branch": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "url"
+          ],
+          "additionalProperties": true
+        }
+      },
+      {
+        "name": "Workflow",
+        "description": "An explicitly identified workflow supported by the source.",
+        "identity_properties": [
+          "workflow_id"
+        ],
+        "properties": [
+          {
+            "name": "workflow_id",
+            "description": "Exact source-stated stable identifier, scoped by its provider where necessary.",
+            "required": true
+          }
+        ],
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "workflow_id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "workflow_id"
+          ],
+          "additionalProperties": true
+        }
+      },
+      {
+        "name": "WorkflowRun",
+        "description": "An explicitly identified workflowrun supported by the source.",
+        "identity_properties": [
+          "run_id"
+        ],
+        "properties": [
+          {
+            "name": "run_id",
+            "description": "Exact source-stated stable identifier, scoped by its provider where necessary.",
+            "required": true
+          }
+        ],
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "run_id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "conclusion": {
+              "type": "string"
+            },
+            "commit_sha": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "run_id"
+          ],
+          "additionalProperties": true
+        }
+      },
+      {
+        "name": "Incident",
+        "description": "An explicitly identified incident supported by the source.",
+        "identity_properties": [
+          "incident_id"
+        ],
+        "properties": [
+          {
+            "name": "incident_id",
+            "description": "Exact source-stated stable identifier, scoped by its provider where necessary.",
+            "required": true
+          }
+        ],
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "incident_id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "severity": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "incident_id"
+          ],
+          "additionalProperties": true
+        }
+      }
+    ],
+    "edge_types": [
+      {
+        "name": "DEFINED_IN",
+        "source_type": "Application",
+        "target_type": "Repository",
+        "description": "Extract only when the source explicitly supports this association."
+      },
+      {
+        "name": "DEPLOYED_BY",
+        "source_type": "Application",
+        "target_type": "Workflow",
+        "description": "Extract only when the source explicitly supports this association."
+      },
+      {
+        "name": "RUN_OF",
+        "source_type": "WorkflowRun",
+        "target_type": "Workflow",
+        "description": "Extract only when the source explicitly supports this association."
+      },
+      {
+        "name": "DEPLOYS",
+        "source_type": "WorkflowRun",
+        "target_type": "Application",
+        "description": "Extract only when the source explicitly supports this association."
+      },
+      {
+        "name": "AFFECTS",
+        "source_type": "Incident",
+        "target_type": "Application",
+        "description": "Extract only when the source explicitly supports this association."
+      }
+    ],
+    "edge_type_map": [
+      {
+        "source_type": "Application",
+        "target_type": "Repository",
+        "edge_name": "DEFINED_IN"
+      },
+      {
+        "source_type": "Application",
+        "target_type": "Workflow",
+        "edge_name": "DEPLOYED_BY"
+      },
+      {
+        "source_type": "WorkflowRun",
+        "target_type": "Workflow",
+        "edge_name": "RUN_OF"
+      },
+      {
+        "source_type": "WorkflowRun",
+        "target_type": "Application",
+        "edge_name": "DEPLOYS"
+      },
+      {
+        "source_type": "Incident",
+        "target_type": "Application",
+        "edge_name": "AFFECTS"
+      }
+    ]
+  },
+  "source_guidance": {
+    "github": {
+      "instructions": "Extract operational applications, repositories, workflows, workflow runs and incidents with source-stated stable identifiers. Do not invent an identifier or turn functions or file names into applications. Missing required evidence means omit the mention.",
+      "relationship_instructions": "Report only explicit associations. Suspected causes in logs or incident discussions are not confirmed dependencies."
+    },
+    "github-actions": {
+      "instructions": "Extract operational applications, repositories, workflows, workflow runs and incidents with source-stated stable identifiers. Do not invent an identifier or turn functions or file names into applications. Missing required evidence means omit the mention.",
+      "relationship_instructions": "Report only explicit associations. Suspected causes in logs or incident discussions are not confirmed dependencies."
+    },
+    "pagerduty": {
+      "instructions": "Extract operational applications, repositories, workflows, workflow runs and incidents with source-stated stable identifiers. Do not invent an identifier or turn functions or file names into applications. Missing required evidence means omit the mention.",
+      "relationship_instructions": "Report only explicit associations. Suspected causes in logs or incident discussions are not confirmed dependencies."
+    },
+    "logs": {
+      "instructions": "Extract operational applications, repositories, workflows, workflow runs and incidents with source-stated stable identifiers. Do not invent an identifier or turn functions or file names into applications. Missing required evidence means omit the mention.",
+      "relationship_instructions": "Report only explicit associations. Suspected causes in logs or incident discussions are not confirmed dependencies."
+    },
+    "slack": {
+      "instructions": "Extract operational applications, repositories, workflows, workflow runs and incidents with source-stated stable identifiers. Do not invent an identifier or turn functions or file names into applications. Missing required evidence means omit the mention.",
+      "relationship_instructions": "Report only explicit associations. Suspected causes in logs or incident discussions are not confirmed dependencies."
+    }
+  }
+}

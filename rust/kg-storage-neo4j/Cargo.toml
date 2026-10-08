@@ -1,0 +1,37 @@
+[package]
+name = "kg-storage-neo4j"
+description = "Neo4j GraphBackend implementation for kg-builder"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+secrecy.workspace = true
+kg-storage-cypher.workspace = true
+uuid.workspace = true
+kg-core.workspace = true
+async-trait.workspace = true
+chrono.workspace = true
+neo4rs.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+serde_json.workspace = true
+serde.workspace = true
+tracing.workspace = true
+
+[features]
+# Dev-only: the schema-destructive suite compiles only for `task test:live:schema`.
+destructive-schema-tests = []
+# Dev-only: the live Neo4j tests that live next to crate-private code compile only for `task test:live:*`.
+live-tests = []
+
+[[test]]
+name = "schema_destructive"
+path = "tests/schema/main.rs"
+required-features = ["destructive-schema-tests"]
+
+[dev-dependencies]
+kg-neo4j-testkit.workspace = true
+tokio = { workspace = true, features = ["full", "test-util"] }
+tracing-subscriber.workspace = true

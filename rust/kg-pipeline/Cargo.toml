@@ -1,0 +1,29 @@
+[package]
+name = "kg-pipeline"
+description = "Pipeline runner for the kg-builder knowledge graph engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+kg-core.workspace = true
+futures.workspace = true
+tokio.workspace = true
+tokio-util = { workspace = true, features = ["rt"] }
+uuid.workspace = true
+chrono.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+
+[features]
+# Dev-only: the runner's live Neo4j tests compile only for `task test:live:pipeline`.
+live-tests = []
+
+[dev-dependencies]
+async-trait.workspace = true
+kg-core = { workspace = true, features = ["test-support"] }
+kg-storage-neo4j.workspace = true
+kg-neo4j-testkit.workspace = true
+tokio = { workspace = true, features = ["full", "test-util"] }
+tracing-subscriber.workspace = true

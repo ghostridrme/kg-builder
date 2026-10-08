@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=77,<83"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kg-connectors"
+version = "0.1.0"
+description = "Source connectors for the kg-builder SDK"
+requires-python = ">=3.11,<3.15"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = ["kg-sdk==0.1.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "botocore==1.43.101"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

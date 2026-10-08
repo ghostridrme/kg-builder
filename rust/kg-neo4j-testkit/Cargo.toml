@@ -1,0 +1,16 @@
+[package]
+name = "kg-neo4j-testkit"
+description = "Dev-only helpers for suites that run against a disposable Neo4j: one env contract, org-scoped cleanup, exclusive wipes"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+publish = false
+
+# Only [dev-dependencies] tables may list this crate (design_invariants.rs enforces it).
+[dependencies]
+kg-core.workspace = true
+kg-storage-neo4j.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+uuid.workspace = true

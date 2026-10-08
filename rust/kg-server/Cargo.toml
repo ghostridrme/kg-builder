@@ -1,0 +1,33 @@
+[package]
+name = "kg-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+kg-core.workspace = true
+kg-storage-neo4j.workspace = true
+kg-search = { path = "../kg-search" }
+kg-stages.workspace = true
+async-trait.workspace = true
+tokio-util.workspace = true
+axum = "0.8"
+tokio = { workspace = true, features = ["full"] }
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+uuid.workspace = true
+secrecy.workspace = true
+dotenvy.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+rmcp = { version = "3.4", features = ["server", "transport-io", "transport-streamable-http-server"] }
+subtle = "2"
+sha2 = "0.10"
+thiserror.workspace = true
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }
+kg-core = { workspace = true, features = ["test-support"] }

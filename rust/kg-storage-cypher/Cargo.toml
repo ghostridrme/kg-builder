@@ -1,0 +1,16 @@
+[package]
+name = "kg-storage-cypher"
+description = "Shared parameterized openCypher reads, mutations, receipts, and typed decoders"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+sha2 = "0.10"
+kg-core.workspace = true
+serde_json.workspace = true
+serde.workspace = true
+chrono.workspace = true
+uuid.workspace = true
+xxhash-rust.workspace = true

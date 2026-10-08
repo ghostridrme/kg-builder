@@ -1,0 +1,15 @@
+[
+  {
+    "namespace": "prod",
+    "name": "runbook-notes",
+    "data_type": "text",
+    "snapshot_kind": "incremental",
+    "complete": false,
+    "source": "runbook",
+    "org_id": "acme",
+    "captured_at": "2026-08-25T03:00:00Z",
+    "entities": [],
+    "content": "The checkout service (an ECS service named checkout-svc in cluster prod-ecs) reads from the orders-db Postgres RDS instance and publishes order events to the SQS queue order-events. A Lambda function order-notifier consumes order-events and calls the SES service to email customers. checkout-svc runs behind the ALB checkout-alb in VPC vpc-0a1b2c3d.",
+    "source_description": "Operational observations from the AWS environment"
+  }
+]

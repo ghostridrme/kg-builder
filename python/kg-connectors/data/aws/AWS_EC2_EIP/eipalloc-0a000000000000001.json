@@ -1,0 +1,15 @@
+{
+  "resourceArn": "arn:aws:ec2:us-east-1:111122223333:elastic-ip/eipalloc-0a000000000000001",
+  "resourceId": "eipalloc-0a000000000000001",
+  "resourceType": "AWS::EC2::EIP",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "AllocationId": "eipalloc-0a000000000000001",
+    "PublicIp": "203.0.113.42",
+    "Domain": "vpc",
+    "NetworkBorderGroup": "us-east-1",
+    "PublicIpv4Pool": "amazon"
+  }
+}

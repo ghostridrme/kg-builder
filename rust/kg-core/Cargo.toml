@@ -1,0 +1,45 @@
+[package]
+name = "kg-core"
+description = "Core traits, models, and types for the kg-builder knowledge graph engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+jsonschema = { version = "0.56", default-features = false }
+sha2 = "0.10"
+serde = { workspace = true, features = ["rc"] }
+serde_json.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+xxhash-rust.workspace = true
+indexmap.workspace = true
+thiserror.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+dashmap.workspace = true
+secrecy.workspace = true
+strum.workspace = true
+dotenvy = { workspace = true, optional = true }
+
+[features]
+# Test doubles, fixtures and the paid-provider gate for the workspace suites.
+# `env::paid()` loads `.env`, so the feature pulls in dotenvy.
+test-support = ["dep:dotenvy"]
+
+[dev-dependencies]
+# Self dev-dependency: the crate's own unit and integration tests see `test_support`
+# (and `env::paid()`) without callers having to pass --features.
+kg-core = { path = ".", features = ["test-support"] }
+tracing-subscriber.workspace = true
+tokio = { workspace = true, features = ["full", "test-util"] }
+proptest.workspace = true
+criterion.workspace = true
+# design_invariants.rs parses other crates' sources for stray Cypher literals.
+syn = { version = "2", features = ["full", "visit"] }
+proc-macro2 = "1"
+toml.workspace = true
+

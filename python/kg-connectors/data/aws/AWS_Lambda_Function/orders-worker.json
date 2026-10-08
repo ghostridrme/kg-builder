@@ -1,0 +1,45 @@
+{
+  "resourceArn": "arn:aws:lambda:us-east-1:111122223333:function:orders-worker",
+  "resourceId": "orders-worker",
+  "resourceType": "AWS::Lambda::Function",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "FunctionName": "orders-worker",
+    "FunctionArn": "arn:aws:lambda:us-east-1:111122223333:function:orders-worker",
+    "Runtime": "python3.12",
+    "Role": "arn:aws:iam::111122223333:role/orders-app",
+    "Handler": "handler.main",
+    "CodeSize": 4096,
+    "Description": "Synthetic order worker",
+    "Timeout": 30,
+    "MemorySize": 256,
+    "LastModified": "2026-10-01T10:00:00.000+0000",
+    "CodeSha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+    "Version": "$LATEST",
+    "VpcConfig": {
+      "SubnetIds": [
+        "subnet-0a000000000000001"
+      ],
+      "SecurityGroupIds": [
+        "sg-0a000000000000001"
+      ],
+      "VpcId": "vpc-0a000000000000001"
+    },
+    "Environment": {
+      "Variables": {
+        "ENVIRONMENT": "test"
+      }
+    },
+    "KMSKeyArn": "arn:aws:kms:us-east-1:111122223333:key/12345678-1234-1234-1234-123456789abc",
+    "State": "Active",
+    "LastUpdateStatus": "Successful",
+    "Architectures": [
+      "x86_64"
+    ],
+    "EphemeralStorage": {
+      "Size": 512
+    }
+  }
+}

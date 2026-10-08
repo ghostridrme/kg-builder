@@ -1,0 +1,32 @@
+{
+  "resourceArn": "arn:aws:elasticloadbalancing:us-east-1:111122223333:loadbalancer/app/orders-alb/1234567890abcdef",
+  "resourceId": "arn:aws:elasticloadbalancing:us-east-1:111122223333:loadbalancer/app/orders-alb/1234567890abcdef",
+  "resourceType": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "LoadBalancerArn": "arn:aws:elasticloadbalancing:us-east-1:111122223333:loadbalancer/app/orders-alb/1234567890abcdef",
+    "DNSName": "orders-alb-123456789.us-east-1.elb.amazonaws.com",
+    "CanonicalHostedZoneId": "Z35SXDOTRQ7X7K",
+    "CreatedTime": "2026-10-01T09:00:00Z",
+    "LoadBalancerName": "orders-alb",
+    "Scheme": "internal",
+    "VpcId": "vpc-0a000000000000001",
+    "State": {
+      "Code": "active"
+    },
+    "Type": "application",
+    "AvailabilityZones": [
+      {
+        "ZoneName": "us-east-1a",
+        "SubnetId": "subnet-0a000000000000001",
+        "LoadBalancerAddresses": []
+      }
+    ],
+    "SecurityGroups": [
+      "sg-0a000000000000001"
+    ],
+    "IpAddressType": "ipv4"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "resourceArn": "arn:aws:ec2:us-east-1:111122223333:subnet/subnet-0a000000000000001",
+  "resourceId": "subnet-0a000000000000001",
+  "resourceType": "AWS::EC2::Subnet",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "SubnetId": "subnet-0a000000000000001",
+    "VpcId": "vpc-0a000000000000001",
+    "CidrBlock": "10.42.1.0/24",
+    "AvailabilityZone": "us-east-1a",
+    "State": "available",
+    "AvailableIpAddressCount": 250,
+    "MapPublicIpOnLaunch": false,
+    "OwnerId": "111122223333"
+  }
+}

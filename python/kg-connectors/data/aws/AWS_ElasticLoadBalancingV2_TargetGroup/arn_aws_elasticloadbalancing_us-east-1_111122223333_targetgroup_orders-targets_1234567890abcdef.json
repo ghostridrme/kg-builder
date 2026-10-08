@@ -1,0 +1,32 @@
+{
+  "resourceArn": "arn:aws:elasticloadbalancing:us-east-1:111122223333:targetgroup/orders-targets/1234567890abcdef",
+  "resourceId": "arn:aws:elasticloadbalancing:us-east-1:111122223333:targetgroup/orders-targets/1234567890abcdef",
+  "resourceType": "AWS::ElasticLoadBalancingV2::TargetGroup",
+  "accountId": "111122223333",
+  "awsRegion": "us-east-1",
+  "capturedAt": "2026-10-08T12:00:00Z",
+  "payload": {
+    "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:111122223333:targetgroup/orders-targets/1234567890abcdef",
+    "TargetGroupName": "orders-targets",
+    "Protocol": "HTTP",
+    "Port": 8080,
+    "VpcId": "vpc-0a000000000000001",
+    "HealthCheckProtocol": "HTTP",
+    "HealthCheckPort": "traffic-port",
+    "HealthCheckEnabled": true,
+    "HealthCheckIntervalSeconds": 30,
+    "HealthCheckTimeoutSeconds": 5,
+    "HealthyThresholdCount": 5,
+    "UnhealthyThresholdCount": 2,
+    "HealthCheckPath": "/health",
+    "Matcher": {
+      "HttpCode": "200"
+    },
+    "LoadBalancerArns": [
+      "arn:aws:elasticloadbalancing:us-east-1:111122223333:loadbalancer/app/orders-alb/1234567890abcdef"
+    ],
+    "TargetType": "instance",
+    "ProtocolVersion": "HTTP1",
+    "IpAddressType": "ipv4"
+  }
+}
